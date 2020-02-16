@@ -21,4 +21,21 @@ router.get('/', (req, res) => {
     });
 })
 
+// Get posts by id
+router.get('/:id', (req, res) => {
+    blog.findById(req.params.id)
+    .then((posts) => {
+        if (posts) {
+            res
+            .status(200)
+            .json(posts)
+        } else {
+            res
+            .status(404).json({
+                message: "Posts not found",
+            })
+        }
+    })
+})
+
 module.exports = router
