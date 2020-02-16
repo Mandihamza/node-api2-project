@@ -38,4 +38,21 @@ router.get('/:id', (req, res) => {
     })
 })
 
+// Get post comments
+router.get('/:id/comments', (req, res) => {
+    blog.findPostComments(req.params.id)
+    .then((comments) => {
+        if (comments) {
+            res
+            .status(200)
+            .json(comments)
+        } else {
+            res
+            .status(404).json({
+                message: "Comments not found",
+            })
+        }
+    })
+})
+
 module.exports = router
