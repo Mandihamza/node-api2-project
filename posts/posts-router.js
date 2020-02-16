@@ -1,11 +1,11 @@
 const express = require('express')
-const blog = require('../data/db.js')
+const db = require('../data/db.js')
 
 const router = express.Router()
 
 // GET all posts
 router.get('/', (req, res) => {
-    blog.find()
+    db.find()
     .then((posts) => {
         res
         .status(200)
@@ -21,9 +21,9 @@ router.get('/', (req, res) => {
     });
 })
 
-// Get posts by id
+// GET posts by id
 router.get('/:id', (req, res) => {
-    blog.findById(req.params.id)
+    db.findById(req.params.id)
     .then((posts) => {
         if (posts) {
             res
@@ -38,9 +38,9 @@ router.get('/:id', (req, res) => {
     })
 })
 
-// Get post comments
+// GET post comments
 router.get('/:id/comments', (req, res) => {
-    blog.findPostComments(req.params.id)
+    db.findPostComments(req.params.id)
     .then((comments) => {
         if (comments) {
             res
